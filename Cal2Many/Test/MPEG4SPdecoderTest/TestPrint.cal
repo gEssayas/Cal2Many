@@ -1,0 +1,7 @@
+actor TestPrint () int out ==> :
+
+	print: action  out:[a]==>
+	do
+		println(a);
+	end
+end

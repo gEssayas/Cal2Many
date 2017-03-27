@@ -1,0 +1,10 @@
+
+actor Shift ( int isz, int csz )
+   int(size=isz) X0, int(size=isz) X1, int(size=isz) X2, int(size=isz) X3
+    ==>
+   int(size=csz) Y0, int(size=csz) Y1, int(size=csz) Y2, int(size=csz) Y3 :
+
+   action X0:[a], X1:[b], X2:[c], X3:[d] ==> 
+          Y0:[rshift(a,6)], Y1:[rshift(b,6)], Y2:[rshift(c,6)], Y3:[rshift(d,6)] end
+end
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XDF name="Idct2d">
+    <Instance id="scale">
+        <Class name="Scale"/>
+    </Instance>
+    <Instance id="combine">
+        <Class name="Combine"/>
+    </Instance>
+    <Instance id="shufflefly">
+        <Class name="ShuffleFly"/>
+    </Instance>
+    <Instance id="shuffle">
+        <Class name="Shuffle"/>
+    </Instance>
+    <Instance id="final">
+        <Class name="Final"/>
+    </Instance>
+    <Instance id="rowSort">
+        <Class name="RowSort"/>
+    </Instance>
+    <Instance id="source">
+        <Class name="TestSource"/>
+    </Instance>
+    <Instance id="trance">
+        <Class name="Transpose"/>
+    </Instance>
+    <Instance id="testprint">
+        <Class name="TestPrint"/>
+    </Instance>
+    <Instance id="scale2">
+        <Class name="Scale"/>
+    </Instance>
+    <Instance id="combinef">
+        <Class name="CombineF"/>
+    </Instance>
+    <Instance id="shufflefly2">
+        <Class name="ShuffleFly"/>
+    </Instance>
+    <Instance id="shuffle2">
+        <Class name="Shuffle"/>
+    </Instance>
+    <Instance id="final2">
+        <Class name="Final"/>
+    </Instance>
+    <Instance id="retrance">
+        <Class name="Retranspose"/>
+    </Instance>
+    <Instance id="shift">
+        <Class name="Shift"/>
+    </Instance>
+    <Instance id="clip">
+        <Class name="Clip"/>
+    </Instance>
+    <Connection dst="rowSort" dst-port="ROW" src="source" src-port="V"/>
+    <Connection dst="scale" dst-port="X0" src="rowSort" src-port="Y0"/>
+    <Connection dst="scale" dst-port="X1" src="rowSort" src-port="Y1"/>
+    <Connection dst="combine" dst-port="X0" src="scale" src-port="Y0"/>
+    <Connection dst="combine" dst-port="X1" src="scale" src-port="Y1"/>
+    <Connection dst="combine" dst-port="X2" src="scale" src-port="Y2"/>
+    <Connection dst="combine" dst-port="X3" src="scale" src-port="Y3"/>
+    <Connection dst="shufflefly" dst-port="X0" src="combine" src-port="Y0"/>
+    <Connection dst="shufflefly" dst-port="X1" src="combine" src-port="Y1"/>
+    <Connection dst="shuffle" dst-port="X0" src="shufflefly" src-port="Y0"/>
+    <Connection dst="shuffle" dst-port="X1" src="shufflefly" src-port="Y1"/>
+    <Connection dst="shuffle" dst-port="X2" src="shufflefly" src-port="Y2"/>
+    <Connection dst="shuffle" dst-port="X3" src="shufflefly" src-port="Y3"/>
+    <Connection dst="final" dst-port="X0" src="shuffle" src-port="Y0"/>
+    <Connection dst="final" dst-port="X1" src="shuffle" src-port="Y1"/>
+    <Connection dst="final" dst-port="X2" src="shuffle" src-port="Y2"/>
+    <Connection dst="final" dst-port="X3" src="shuffle" src-port="Y3"/>
+    <Connection dst="trance" dst-port="X0" src="final" src-port="Y0"/>
+    <Connection dst="trance" dst-port="X1" src="final" src-port="Y1"/>
+    <Connection dst="trance" dst-port="X2" src="final" src-port="Y2"/>
+    <Connection dst="trance" dst-port="X3" src="final" src-port="Y3"/>
+    <Connection dst="shuffle2" dst-port="X0" src="shufflefly2" src-port="Y0"/>
+    <Connection dst="shuffle2" dst-port="X1" src="shufflefly2" src-port="Y1"/>
+    <Connection dst="shuffle2" dst-port="X2" src="shufflefly2" src-port="Y2"/>
+    <Connection dst="shuffle2" dst-port="X3" src="shufflefly2" src-port="Y3"/>
+    <Connection dst="scale2" dst-port="X0" src="trance" src-port="Y0"/>
+    <Connection dst="scale2" dst-port="X1" src="trance" src-port="Y1"/>
+    <Connection dst="combinef" dst-port="X0" src="scale2" src-port="Y0"/>
+    <Connection dst="combinef" dst-port="X1" src="scale2" src-port="Y1"/>
+    <Connection dst="combinef" dst-port="X2" src="scale2" src-port="Y2"/>
+    <Connection dst="combinef" dst-port="X3" src="scale2" src-port="Y3"/>
+    <Connection dst="shufflefly2" dst-port="X0" src="combinef" src-port="Y0"/>
+    <Connection dst="final2" dst-port="X0" src="shuffle2" src-port="Y0"/>
+    <Connection dst="final2" dst-port="X1" src="shuffle2" src-port="Y1"/>
+    <Connection dst="final2" dst-port="X2" src="shuffle2" src-port="Y2"/>
+    <Connection dst="final2" dst-port="X3" src="shuffle2" src-port="Y3"/>
+    <Connection dst="shufflefly2" dst-port="X1" src="combinef" src-port="Y1"/>
+    <Connection dst="shift" dst-port="X0" src="final2" src-port="Y0"/>
+    <Connection dst="shift" dst-port="X1" src="final2" src-port="Y1"/>
+    <Connection dst="shift" dst-port="X2" src="final2" src-port="Y2"/>
+    <Connection dst="shift" dst-port="X3" src="final2" src-port="Y3"/>
+    <Connection dst="retrance" dst-port="X0" src="shift" src-port="Y0"/>
+    <Connection dst="retrance" dst-port="X1" src="shift" src-port="Y1"/>
+    <Connection dst="retrance" dst-port="X2" src="shift" src-port="Y2"/>
+    <Connection dst="retrance" dst-port="X3" src="shift" src-port="Y3"/>
+    <Connection dst="clip" dst-port="SIGNED" src="source" src-port="Signed"/>
+    <Connection dst="clip" dst-port="I" src="retrance" src-port="Y"/>
+    <Connection dst="testprint" dst-port="B" src="clip" src-port="O"/>
+</XDF>

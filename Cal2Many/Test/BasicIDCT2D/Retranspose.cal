@@ -1,0 +1,54 @@
+
+actor Retranspose ( int isz, int osz )
+   int(size=isz) X0, int(size=isz) X1, int(size=isz) X2, int(size=isz) X3 ==> int(size=osz) Y :
+
+  //List[ List[ List[ int(size=osz) ] ] ] mem :=
+  List ( type:List( type:List( type:int(size=osz), size=8), size=8), size=2) mem := 
+          [  [  [0 : for k in Integers(1, 8)]  : for j in Integers(1, 8)]   : for i in Integers(1, 2) ];
+
+  int rcount := 0;
+  int ccount := 0;
+  int select := 0;
+
+  action X0:[a], X1:[b], X2:[c], X3:[d] ==>
+  guard rcount < 64
+  var
+    int row = rshift( rcount, 3 ),
+    int quad = bitand( rshift( rcount, 2), 1)
+  do
+    // { 0, 7, 3, 4 }
+    // { 1, 6, 2, 5 }
+    if  quad = 0 then
+      mem[select,row,0] := a;
+      mem[select,row,7] := b;
+      mem[select,row,3] := c;
+      mem[select,row,4] := d;
+    else
+      mem[select,row,1] := a;
+      mem[select,row,6] := b;
+      mem[select,row,2] := c;
+      mem[select,row,5] := d;
+    end
+    rcount := rcount + 4;
+  end
+
+  action ==> Y:[ mem[i,row,col] ]
+  guard ccount > 0
+  var
+    int col = rshift( 64-ccount, 3 ),
+    int row = bitand( 64-ccount, 7 ),
+    int i = bitxor(select,1)
+  do
+    ccount := ccount - 1;
+  end
+
+  action ==>
+  guard
+    (ccount = 0) and (rcount = 64)
+  do
+    select := bitxor( select, 1 );
+    ccount := 64;
+    rcount := 0;
+  end
+
+ end

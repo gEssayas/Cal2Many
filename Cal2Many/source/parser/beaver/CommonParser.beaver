@@ -1,0 +1,367 @@
+/******************************************************************************
+ *  Common for both Actor and Networks
+ *  From file source/parser/beaver/CommonParser.beaver
+ *****************************************************************************/
+//--- actor parameter ---
+actor_parameter_list =
+    actor_parameter.p                              {: return new Symbol(ImmutableList.builder().add(p)); :}
+  | actor_parameter_list.l COMMA actor_parameter.p {: l.add(p); return _symbol_l; :}
+  ;
+actor_parameter =
+//TODO, init expression is ignored
+           IDENTIFIER.id actor_parameter_init_expression.e? {: return new Symbol(new ParDeclValue((String)id.value, null)); :}
+  | type.t IDENTIFIER.id actor_parameter_init_expression.e? {: return new Symbol(new ParDeclValue((String)id.value, t)); :}
+  ;
+actor_parameter_init_expression =
+    EQ expression.e {: return _symbol_e; :}
+  ;
+
+//--- Qualified id
+//used by NlParser
+qual_id =
+    IDENTIFIER.id                     {: ArrayList l = new ArrayList(); l.add(id.value); return new Symbol(l); :}
+  | IDENTIFIER.id DOT qual_id.l       {: l.add(0, id.value); return _symbol_l; :}
+  ;
+
+variable = IDENTIFIER.id {: return new Symbol(Variable.namedVariable((String) id.value)); :} ;
+field = IDENTIFIER.id {: return new Symbol(new Field((String) id.value)); :} ;
+
+//=== Declaration =============================================================
+decl_list =
+    decl.d                   {: return new Symbol(ImmutableList.builder().add(d)); :}
+  | decl_list.l COMMA decl.d {: l.add(d); return _symbol_l; :}
+  ;
+decl_block =
+    VAR decl_list.d          {: return new Symbol(d.build()); :}
+  ;
+decl_block_opt =
+                             {: return new Symbol(ImmutableList.empty()); :}
+  | VAR decl_list.d          {: return new Symbol(d.build()); :}
+  ;
+decl =
+    var_decl.d  {: return _symbol_d; :}
+  | fun_decl.d  {: return _symbol_d; :}
+  | proc_decl.d {: return _symbol_d; :}
+  ;
+//used external
+var_decl =
+//TODO, mutable is ignored
+    MUTABLE var_name_type.v                         {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, null, true)); :}
+  | MUTABLE var_name_type.v EQ expression.init      {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, init, false)); :}
+  | MUTABLE var_name_type.v EQCOLON expression.init {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, init, true)); :}
+  | var_name_type.v                                 {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, null, true)); :}
+  | var_name_type.v EQ expression.init              {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, init, false)); :}
+  | var_name_type.v COLONEQ expression.init         {: return new Symbol(new DeclVar(v.getType(), v.getName(), null, init, true)); :}
+  ;
+var_name_type =
+    IDENTIFIER.id           {: return new Symbol(new DeclVar(null, (String)id.value, null)); :}
+  | type.type IDENTIFIER.id {: return new Symbol(new DeclVar(type, (String)id.value, null)); :}
+  ;
+//used external
+fun_decl =
+    FUNCTION IDENTIFIER.id lambda_expr_body.lambda   {: return new Symbol(new DeclVar(null, (String)id.value, null, lambda, false)); :}
+  ;
+//used external
+proc_decl =
+    PROCEDURE IDENTIFIER.id procedure_expr_body.body {: return new Symbol(new DeclVar(null, (String)id.value, null, body, false)); :}
+  ;
+port_decl =
+//TODO, the keyword multi is ignored
+    IDENTIFIER.id                 {: return new Symbol(new PortDecl((String)id.value, null)); :}
+  | type.type IDENTIFIER.id       {: return new Symbol(new PortDecl((String)id.value, type)); :}
+  | MULTI IDENTIFIER.id           {: return new Symbol(new PortDecl((String)id.value, null)); :}
+  | MULTI type.type IDENTIFIER.id {: return new Symbol(new PortDecl((String)id.value, type)); :}
+  ;
+port_decl_list_opt =
+                     {: return new Symbol(null); :}
+  | port_decl_list.l {: return new Symbol(l.build()); :}
+  ;
+port_decl_list =
+    port_decl.port_decl                {: return new Symbol(ImmutableList.builder().add(port_decl)); :}
+  | port_decl_list.l COMMA port_decl.d {: l.add(d); return _symbol_l; :}
+  ;
+
+//=== type ====================================================================
+type_bound =
+    LT type.type {: return _symbol_type; :}
+  ;
+type_bound_opt =
+                 {: return new Symbol(null); :}
+  | type_bound.n {: return _symbol_n; :}
+  ;
+type_parameter =
+//TODO, type bound is ignored
+    IDENTIFIER.id type_bound_opt.type_bound {: return new Symbol(new ParDeclType((String)id.value)); :}
+  ;
+type_parameter_block =
+  LBRACK type_parameter_list.l? RBRACK {: return new Symbol(l == null ? null : l.build()); :}
+  ;
+type_parameter_list =
+    type_parameter.tp                             {: return new Symbol(ImmutableList.builder().add(tp)); :}
+  | type_parameter_list.l COMMA type_parameter.tp {: l.add(tp); return _symbol_l; :}
+  ;
+type_list =
+    type.t                   {: return new Symbol(ImmutableList.builder().add(t)); :}
+  | type_list.l COMMA type.t {: l.add(t); return _symbol_l; :}
+  ;
+
+//used by NlParser
+type =
+    IDENTIFIER.id                                               {: return new Symbol(new TypeExpr((String)id.value)); :}
+  | IDENTIFIER.id LPAREN type_attribute_list.attributes? RPAREN {: ImmutableList.Builder valueParameters = ImmutableList.builder();
+                                                                   ImmutableList.Builder typeParameters = ImmutableList.builder();
+                                                                   for(Map.Entry map : (ArrayList<Map.Entry>)attributes){
+                                                                     if(map.getValue() instanceof Expression){
+                                                                       valueParameters.add(ImmutableEntry.of(map.getKey(), map.getValue()));
+                                                                     } else {
+                                                                       typeParameters.add(ImmutableEntry.of(map.getKey(), map.getValue()));
+                                                                     }
+                                                                   }
+                                                                   return new Symbol(new TypeExpr((String)id.value, typeParameters.build(), valueParameters.build()));
+                                                                :}
+//TODO, types involving '->' can not be represented in the internal representation
+  | LBRACK type_list.param? EDGE type.result_type RBRACK     {: return new Symbol(null); :}
+  | LBRACK type_list.param? EDGE RBRACK                      {: return new Symbol(null); :}
+  ;
+type_attribute_list =
+    type_attribute.t {: ArrayList l = new ArrayList(); l.add(t); return new Symbol(l); :}
+  | type_attribute_list.l COMMA type_attribute.t {: l.add(t); return _symbol_l;:}
+  ;
+type_attribute =
+    IDENTIFIER.id COLON type.type {: return new Symbol(new AbstractMap.SimpleEntry((String)id.value, type)); :}
+  | IDENTIFIER.id EQ expression.e {: return new Symbol(new AbstractMap.SimpleEntry((String)id.value, e)); :}
+  ;
+edge_type =
+    EDGE type.t {: return _symbol_t; :}
+  ;
+
+//=== Expression ==============================================================
+procedure_expr_body =
+    LPAREN formal_parameter_list.param? RPAREN decl_block.decl? stmt_block_opt.body end_proc
+      {:  return new Symbol(
+            new ExprProc(
+              null, 
+              param==null ? ImmutableList.empty() : param.build(),
+              new StmtBlock(null, decl, body)
+            )
+          ); :}
+  ;
+stmt_block_opt =
+                                  {: return new Symbol(ImmutableList.empty()); :}
+  | do_begin statement_list_opt.s {: return _symbol_s; :}
+  ;
+lambda_expr_body =
+    LPAREN formal_parameter_list.param? RPAREN expression.body end_lambda
+         {: return new Symbol(new ExprLambda(null,
+                                             param==null ? null : param.build(),
+                                             body,
+                                             null)); :}
+  | LPAREN formal_parameter_list.param? RPAREN decl_block.decl? COLON expression.body end_lambda
+         {: return new Symbol(new ExprLambda(null,
+                                             param==null ? null : param.build(),
+                                             new ExprLet(null, decl, body),
+                                             null)); :}
+  | LPAREN formal_parameter_list.param? RPAREN edge_type.t decl_block.decl? COLON expression.body end_lambda
+         {: return new Symbol(new ExprLambda(null,
+                                             param==null ? null : param.build(),
+                                             new ExprLet(null, decl, body),
+                                             t)); :}
+  ;
+map_list =
+    map_entry.m                  {: return new Symbol(ImmutableList.builder().add(m)); :}
+  | map_list.l COMMA map_entry.m {: l.add(m); return _symbol_l; :}
+  ;
+map_entry =
+    expression.e1 ARROW expression.e2 {: return new Symbol(new AbstractMap.SimpleEntry(e1, e2)); :}
+  ;
+//tail =
+//    BAR expression.e {: return _symbol_e; :}
+//  ;
+expression_list =
+    expression.e                         {: return new Symbol(ImmutableList.builder().add(e)); :}
+  | expression_list.l COMMA expression.e {: l.add(e); return _symbol_l; :}
+  ;
+expression_list_opt =
+                      {: return new Symbol(ImmutableList.empty()); :}
+  | expression_list.n {: return new Symbol(n.build()); :}
+  ;
+method_invocation =
+    indexing_expression.function LPAREN expression_list_opt.args RPAREN {: return new Symbol(new ExprApplication(function, args)); :}
+  ;
+literal =
+    INTEGER_LITERAL.txt        {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Integer, ((String)txt.value))); :}
+  | LONG_LITERAL.txt           {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Integer, ((String)txt.value))); :}
+  | FLOATING_POINT_LITERAL.txt {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Integer, ((String)txt.value))); :}
+  | DOUBLE_LITERAL.txt         {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Real, ((String)txt.value))); :}
+  | TRUE_LITERAL.txt           {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.True, ((String)txt.value))); :}
+  | FALSE_LITERAL.txt          {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.False, ((String)txt.value))); :}
+  | CHARACTER_LITERAL.txt      {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Char, ((String)txt.value))); :}
+  | STRING_LITERAL.txt         {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.String, ((String)txt.value))); :}
+  | NULL_LITERAL.txt           {: return new Symbol(new ExprLiteral(ExprLiteral.Kind.Null, ((String)txt.value))); :}
+  ;
+primary =
+    literal.l                                            {: return _symbol_l; :}
+  | LPAREN expression.e RPAREN                           {: return new ParenthesSymbol(_symbol_e); :}
+  | LPAREN.start expression.e DOUBLECOLON type.t RPAREN {: parseProblems.add("Type assertion is not supported. Assertion is ignored at " + Symbol.getLine(start.getStart()) + ", " + Symbol.getColumn(start.getStart())); :}
+//TODO, type assertion is not supported
+  ;
+simple_expression =
+    primary.p                                                       {: return _symbol_p; :}
+  | variable.v                                                      {: return new Symbol(new ExprVariable(v)); :}
+//TODO, old is ignored
+  | OLD variable.v                                                  {: return new Symbol(new ExprVariable(v)); :}
+  | IF expression.c THEN expression.e1 ELSE expression.e2 END       {: return new Symbol(new ExprIf(c, e1, e2)); :}
+  | LBRACE expression_list_opt.e RBRACE                             {: return new Symbol(new ExprSet(e)); :}
+  | LBRACE expression_list_opt.e COLON for_generator_list.l RBRACE  {: return new Symbol(new ExprSet(e, l.build())); :}
+  | LBRACK expression_list_opt.e RBRACK                             {: return new Symbol(new ExprList(e)); :}
+//TODO, tail is ignored
+//  | LBRACK expression_list_opt.e tail.tail RBRACK                   {: return new Symbol(new ExprList(e)); :}
+  | LBRACK expression_list_opt.e COLON for_generator_list.l RBRACK  {: return new Symbol(new ExprList(e, l.build())); :}
+//TODO, tail is ignored
+//  | LBRACK expression_list_opt.e COLON for_generator_list.l tail.tail RBRACK {: return new Symbol(new ExprList(e, l.build())); :}
+  | MAP LBRACE map_list.m? RBRACE                                            {: return new Symbol(new ExprMap(m==null? null : m.build())); :}
+  | MAP LBRACE map_list.m? COLON for_generator_list.generators RBRACE        {: return new Symbol(new ExprMap(m==null? null : m.build(), generators.build())); :}
+  | LET decl_list.l COLON expression.e end_let                               {: return new Symbol(new ExprLet(null, l.build(), e)); :}
+  | LAMBDA lambda_expr_body.lambda                                           {: return _symbol_lambda; :}
+//TODO, const is ignored
+  | CONST LAMBDA lambda_expr_body.lambda                                     {: return _symbol_lambda;:}
+  | PROC procedure_expr_body.p                                               {: return _symbol_p; :}
+  ;
+indexing_expression =
+    simple_expression.e                        {: return _symbol_e; :}
+  | indexer.i                                 {: return i; :}
+  | indexing_expression.p DOT field.f         {: return new Symbol(new ExprField(p, f)); :}
+  | method_invocation.m                                             {: return _symbol_m; :}
+  ;
+indexer = indexer_start.s expression.i RBRACK {: return new Symbol(new ExprIndexer(s, i)); :} ;
+indexer_start =
+    indexing_expression.e LBRACK              {: return _symbol_e; :}
+  | indexer_start.s expression.i COMMA        {: return new Symbol(new ExprIndexer(s, i)); :}
+  ;
+
+unary_expression =
+    indexing_expression.e                     {: return _symbol_e; :}
+  | operator.operator unary_expression.expr {: return new Symbol(new ExprUnaryOp(operator, expr)); :}
+  ;
+expression =
+    unary_expression.e {: return _symbol_e; :}
+  // binary expression
+  | expression.arg1 operator.operator unary_expression.arg2 {: ImmutableList<String> operators;
+                                                               ImmutableList<Expression> operands;
+                                                               boolean arg1IsPar = _symbol_arg1 instanceof ParenthesSymbol;
+                                                               if((arg1 instanceof ExprBinaryOp) && !(arg1IsPar)){
+                                                                 ExprBinaryOp expr = (ExprBinaryOp)arg1;
+                                                                 operators = ImmutableList.<String>builder().addAll(expr.getOperations()).add(operator).build();
+                                                                 operands = ImmutableList.<Expression>builder().addAll(expr.getOperands()).add(arg2).build();
+                                                               } else {
+                                                                 operators = ImmutableList.of(operator);
+                                                                 operands = ImmutableList.of(arg1, arg2);
+                                                               }
+                                                               return new Symbol(new ExprBinaryOp(operators, operands));
+                                                            :}
+  ;
+operator =
+    OPERATOR.op {: return op; :}
+  | EQ.op       {: return op; :}
+  | IN.op       {: return op; :}
+  | GT.op       {: return op; :}
+  | MULT.op     {: return op; :}
+  | BAR.op      {: return op; :}  //TODO, update 2013-05-08 BAR is treated as an operator, ambiguous with list comprehension. Is it indicating a list tail, or binary operation (c|d): [a, b, c | d]
+  ;
+//--- formal parameter
+formal_parameter =
+    IDENTIFIER.id        {: return new Symbol(new ParDeclValue((String)id.value, null)); :}
+  | type.t IDENTIFIER.id {: return new Symbol(new ParDeclValue((String)id.value, t)); :}
+  ;
+formal_parameter_list =
+    formal_parameter.p                               {: return new Symbol(ImmutableList.builder().add(p)); :}
+  | formal_parameter_list.l COMMA formal_parameter.p {: l.add(p);  return _symbol_l; :}
+  ;
+//=== Statement ===============================================================
+statement =
+    // NOTE lhs must be an expression to avoid a shift reduce conflict with method calls.
+//TODO, FIXME introduce lvalue to allow a richer left hand side of assignments.
+    expression.lhs COLONEQ expression.value SEMICOLON {: LValue lvalue = expressionToLValue(lhs);
+                                                         if (lvalue != null) return new Symbol(new StmtAssignment(lvalue, value));
+                                                         newError("Illegal left hand sign of assignment.", _symbol_lhs);
+                                                         return new Symbol(new StmtAssignment(new LValueVariable(Variable.namedVariable("$illegal")), value));
+                                                       :}
+  | method_invocation.m SEMICOLON    {: return new Symbol(new StmtCall(m.getFunction(), m.getArgs())); :}
+  | BEGIN statement_list_opt.s END   {: return new Symbol(new StmtBlock(null, null, s)); :}
+  | BEGIN VAR decl_list.d DO statement_list_opt.s END {: return new Symbol(new StmtBlock(null, d.build(), s)); :}
+  | IF expression.e THEN statement_list_opt.s end_if  {: return new Symbol(new StmtIf(e, new StmtBlock(null, null, s), null)); :}
+  | IF expression.e THEN statement_list_opt.s1 ELSE statement_list_opt.s2 end_if {: return new Symbol(new StmtIf(e, 
+                                                                                                                 new StmtBlock(null, null, s1),
+                                                                                                                 new StmtBlock(null, null, s2))); :}
+  | WHILE expression.e decl_block_opt.d DO statement_list_opt.s end_while {: return new Symbol(new StmtWhile(e, new StmtBlock(null, d, s))); :}
+//TODO choose statements are ignored
+  | choose_generator_list.l decl_block_opt.do_v DO statement_list_opt.do_s end_choose
+  | choose_generator_list.l decl_block_opt.do_v DO statement_list_opt.do_s ELSE statement_list_opt.else_s end_choose
+  | choose_generator_list.l decl_block_opt.do_v DO statement_list_opt.do_s ELSE decl_block_opt.else_v DO statement_list_opt.else_s end_choose
+
+  | for_generator_list.g DO statement_list_opt.s end_foreach              {: return new Symbol(new StmtForeach(g.build(), new StmtBlock(null, null, s))); :}
+  | for_generator_list.g decl_block.d DO statement_list_opt.s end_foreach {: return new Symbol(new StmtForeach(g.build(), new StmtBlock(null, d, s))); :}
+  ;
+// note, using the normal left recursion will cause an ambiguity between "COMMA expression" and "COMMA generator"
+choose_generator_list =
+    CHOOSE        generator_variable_list.vars IN expression.e {: ArrayList l = new ArrayList(); l.add(makeGeneratorFilter(null, vars.build(), e, null)); return new Symbol(l); :}
+  | CHOOSE type.t generator_variable_list.vars IN expression.e {: ArrayList l = new ArrayList(); l.add(makeGeneratorFilter(t, vars.build(), e, null)); return new Symbol(l); :}
+  | CHOOSE        generator_variable_list.vars IN expression.e COMMA expression_list.filters {: ArrayList l = new ArrayList(); l.add(makeGeneratorFilter(null, vars.build(), e, filters.build())); return new Symbol(l); :}
+  | CHOOSE type.t generator_variable_list.vars IN expression.e COMMA expression_list.filters {: ArrayList l = new ArrayList(); l.add(makeGeneratorFilter(t, vars.build(), e, filters.build())); return new Symbol(l); :}
+  | CHOOSE        generator_variable_list.vars IN expression.e COMMA choose_generator_list.l {: l.add(0, makeGeneratorFilter(null, vars.build(), e, null)); return _symbol_l; :}
+  | CHOOSE type.t generator_variable_list.vars IN expression.e COMMA choose_generator_list.l {: l.add(0, makeGeneratorFilter(t, vars.build(), e, null)); return _symbol_l; :}
+  | CHOOSE        generator_variable_list.vars IN expression.e COMMA expression_list.filters COMMA choose_generator_list.l {: l.add(0, makeGeneratorFilter(null, vars.build(), e, filters.build())); return _symbol_l; :}
+  | CHOOSE type.t generator_variable_list.vars IN expression.e COMMA expression_list.filters COMMA choose_generator_list.l {: l.add(0, makeGeneratorFilter(t, vars.build(), e, filters.build())); return _symbol_l; :}
+  ;
+// note, using the normal left recursion will cause an ambiguity between "COMMA expression" and "COMMA generator"
+for_generator_list =
+    for_foreach        generator_variable_list.vars IN expression.e {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(null, vars.build(), e, null))); :}
+  | for_foreach type.t generator_variable_list.vars IN expression.e {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(t, vars.build(), e, null))); :}
+  | for_foreach        generator_variable_list.vars IN expression.e COMMA expression_list.filters {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(null, vars.build(), e, filters.build()))); :}
+  | for_foreach type.t generator_variable_list.vars IN expression.e COMMA expression_list.filters {: return new Symbol(ImmutableList.builder().add((makeGeneratorFilter(t, vars.build(), e, filters.build())))); :}
+  | for_foreach        generator_variable_list.vars IN expression.e COMMA for_generator_list.l {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(null, vars.build(), e, null)).addAll(l.build())); :}
+  | for_foreach type.t generator_variable_list.vars IN expression.e COMMA for_generator_list.l {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(t, vars.build(), e, null)).addAll(l.build())); :}
+  | for_foreach        generator_variable_list.vars IN expression.e COMMA expression_list.filters COMMA for_generator_list.l {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(null, vars.build(), e, filters.build())).addAll(l.build())); :}
+  | for_foreach type.t generator_variable_list.vars IN expression.e COMMA expression_list.filters COMMA for_generator_list.l {: return new Symbol(ImmutableList.builder().add(makeGeneratorFilter(t, vars.build(), e, filters.build())).addAll(l.build())); :}
+  ;
+generator_variable_list =
+    IDENTIFIER.id                                 {: return new Symbol(ImmutableList.builder().add(id.value)); :}
+  | generator_variable_list.l COMMA IDENTIFIER.id {: l.add(id.value); return _symbol_l; :}
+  ;
+for_foreach =
+    FOREACH.FOREACH 
+  | FOR.FOR   ;
+do_begin =
+    BEGIN.BEGIN 
+  | DO.DO   ;
+end_choose =
+    END.END 
+  | ENDCHOOSE.ENDCHOOSE   ;
+end_foreach =
+    END.END 
+  | ENDFOREACH.ENDFOREACH   ;
+//used by NlParser
+end_if = 
+    END.END 
+  | ENDIF.ENDIF   ;
+end_lambda =
+    END.END 
+  | ENDLAMBDA.ENDLAMBDA   ;
+end_let =
+    END.END 
+  | ENDLET.ENDLET   ;
+end_proc =
+    END.END 
+  | ENDPROC.ENDPROC   ;
+end_while =
+    END.END 
+  | ENDWHILE.ENDWHILE   ;
+
+statement_list_opt =
+                       {: return new Symbol(ImmutableList.empty()); :}
+  | statement_list.l   {: return new Symbol(l.build()); :}
+  ;
+statement_list =
+    statement.n                  {: return new Symbol(ImmutableList.builder().add(n)); :}
+  | statement_list.l statement.n {: l.add(n); return _symbol_l; :}
+  ;

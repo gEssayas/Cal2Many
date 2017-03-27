@@ -1,0 +1,25 @@
+
+
+import all caltrop.lib.BitOps;
+
+actor ForemanSource () int(size=8) MPEG, int(size=8) COMPARE ==> int(size=8) dataout, int(size=32) errors :
+
+  int mismatch := 0;
+  int(size=24) count := 0;
+  
+  action MPEG:[mpeg], COMPARE:[comp] ==> dataout:[ mpeg ]
+    guard
+      mismatch = 0
+    do
+      mismatch := bitxor(mpeg, comp);
+      count := count + 1;
+  end
+
+  action ==> errors:[ bitor(lshift(count, 8), bitand(old mismatch, 0xFF)) ]
+    guard
+      mismatch != 0
+    do
+      mismatch := 0;
+  end
+  
+end

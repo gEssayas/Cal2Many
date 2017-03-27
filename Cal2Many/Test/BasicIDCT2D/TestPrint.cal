@@ -1,0 +1,12 @@
+actor TestPrint ()  int B ==>:
+fd = createFile("C:/testcomp/IDCT2D/outout.txt");
+
+	action  B:[b] ==> 
+	do
+	//	 writeByte(fd, b);
+		 println(b);
+		    
+	     	        	        writeByte(fd, b);
+
+	end
+end

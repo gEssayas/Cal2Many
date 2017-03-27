@@ -1,0 +1,49 @@
+
+actor Combine ()
+    int(size=isz) X0, int(size=isz) X1, int(size=isz) X2, int(size=isz) X3 ==>
+    int(size=osz) Y0, int(size=osz) Y1 :
+
+int isz=30; int osz=24; bool row=true;
+  int count := 0;
+  
+  
+    action X0:[a], X1:[b], X2:[c], X3:[d] ==>
+         Y0:[y0out], Y1:[y1out]
+  var
+    bool s = (count = 0),
+    int(size=isz) o = if row then ( if s then  128 else 0 end )
+                           else ( if s then 65536 else 4 end ) end,
+    int(size=isz) y0 = (a + d) + o,
+    int(size=isz) y1 = (b - c) + o,
+    int y0out = if row then y0 else y0>>3 end,
+    int y1out = if row then y1 else (y1>>3) end
+  do
+    count := ( count + 1)& 3 ;
+  end
+  
+
+/*  action X0:[a], X1:[b], X2:[c], X3:[d] ==>
+         Y0:[ y0 ], Y1:[ y1 ]
+  guard row
+  var
+    bool s = (count = 0),
+    int(size=isz) o = if s then 128 else 0 end,
+    int(size=isz) y0 = (a + d) + o,
+    int(size=isz) y1 = (b - c) + o
+  do
+    count := bitand( count + 1, 3 );
+  end
+  
+  action X0:[a], X1:[b], X2:[c], X3:[d] ==>
+         Y0:[ rshift(y0,3) ], Y1:[ rshift(y1,3) ]
+  guard not row
+  var
+    bool s = (count = 0),
+    int(size=isz) o = if s then 65536 else 4 end,
+    int(size=isz) y0 = (a + d) + o,
+    int(size=isz) y1 = (b - c) + o
+  do
+    count := bitand( count + 1, 3 );
+  end
+*/    
+end

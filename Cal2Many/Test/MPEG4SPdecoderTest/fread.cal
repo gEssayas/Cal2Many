@@ -1,0 +1,34 @@
+
+
+// fread.cal
+//
+// Author: David B. Parlour (dave.parlour@xilinx.com)
+//
+
+// Byte source for testbed. Rads from file until EOF.
+
+actor fread( String fname ) ==> int O :
+
+  fd = openFile(fname);
+  int nextc := readByte( fd );
+
+  initialize ==>
+  do
+    println("***************************************");
+    println("***************************************");
+    println("***************************************");
+    println("***************************************");
+  end
+
+  action ==> O:[v]
+  guard
+    nextc >= 0
+  delay 1
+  var
+    int v
+  do
+    v := nextc;
+    nextc := readByte( fd );
+    // print(v + ", ");
+  end
+end

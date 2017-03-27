@@ -1,0 +1,26 @@
+
+import java.util.Random;
+
+actor TestSource ()  ==> int inR, int signed :
+
+	int isend :=0;
+	int sin :=0;
+int send_count:=0;
+
+	action ==> inR:[isend], signed:[sin]
+	guard
+		send_count < 32
+	do
+		isend :=isend+1;
+		if(isend = 64)then
+			send_count := 1+send_count;
+			isend:=0;
+		end
+		sin := ((isend/16)=0); 
+	end
+	
+end
+
+
+
+

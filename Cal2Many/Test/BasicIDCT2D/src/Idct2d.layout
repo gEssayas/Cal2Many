@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<vertices>
+		<vertex id="scale" x="313" y="70"/>
+		<vertex id="combine" x="431" y="70"/>
+		<vertex id="shufflefly" x="567" y="70"/>
+		<vertex id="shuffle" x="707" y="70"/>
+		<vertex id="final" x="831" y="70"/>
+		<vertex id="rowSort" x="180" y="92"/>
+		<vertex id="source" x="57" y="103"/>
+		<vertex id="trance" x="949" y="70"/>
+		<vertex id="testprint" x="1289" y="129"/>
+		<vertex id="scale2" x="552" y="-81"/>
+		<vertex id="combinef" x="659" y="-64"/>
+		<vertex id="shufflefly2" x="784" y="-99"/>
+		<vertex id="shuffle2" x="905" y="-105"/>
+		<vertex id="final2" x="1000" y="-92"/>
+		<vertex id="retrance" x="1181" y="-45"/>
+		<vertex id="shift" x="1083" y="-80"/>
+		<vertex id="clip" x="1213" y="120"/>
+	</vertices>
+</layout>

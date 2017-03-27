@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<vertices>
+		<vertex id="X0" x="22" y="45"/>
+		<vertex id="X1" x="-10" y="239"/>
+		<vertex id="Y0" x="510" y="35"/>
+		<vertex id="Y1" x="519" y="79"/>
+		<vertex id="Y2" x="540" y="162"/>
+		<vertex id="Y3" x="515" y="233"/>
+		<vertex id="scale" x="79" y="110"/>
+		<vertex id="combine" x="150" y="123"/>
+		<vertex id="shufflefly" x="238" y="166"/>
+		<vertex id="shuffle" x="331" y="135"/>
+		<vertex id="final" x="413" y="72"/>
+	</vertices>
+</layout>

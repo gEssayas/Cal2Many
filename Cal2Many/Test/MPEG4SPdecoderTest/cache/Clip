@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actor id="0$id$w25402a" name="Clip">
+    <Decl id="0$id$w25402ab1" kind="Parameter" name="isz">
+        <Type id="0$id$w25402ab1a" name="int"/>
+    </Decl>
+    <Decl id="0$id$w25402ab2" kind="Parameter" name="osz">
+        <Type id="0$id$w25402ab2a" name="int"/>
+    </Decl>
+    <Decl assignable="Yes" id="0$id$w25402ab6" kind="Variable" name="count"
+          text-begin-col="3"
+          text-begin-line="47"
+          text-end-col="25"
+          text-end-line="47">
+        <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+              text-end-col="13"
+              text-end-line="47">
+            <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                      text-begin-col="12"
+                      text-begin-line="47"
+                      text-end-col="12"
+                      text-end-line="47"
+                      value="7"/>
+            </Entry>
+        </Type>
+        <Expr kind="Application">
+            <Expr kind="Var" name="$negate" old="no">
+                <Note kind="freeVar" name="$negate"/>
+            </Expr>
+            <Args>
+                <Expr id="0$id$w25402ab6b1b1" kind="Literal" literal-kind="Integer"
+                      text-begin-col="25"
+                      text-begin-line="47"
+                      text-end-col="25"
+                      text-end-line="47"
+                      value="1"/>
+            </Args>
+            <Note kind="freeVar" name="$negate"/>
+        </Expr>
+    </Decl>
+    <Decl assignable="Yes" id="0$id$w25402ab7" kind="Variable" name="sflag"
+          text-begin-col=""
+          text-begin-line=""
+          text-end-col="8"
+          text-end-line="48">
+        <Type id="0$id$w25402ab7a" name="bool"/>
+    </Decl>
+    <Note kind="counter" value="0"/>
+    <Note xmlns:sch="http://www.ascc.net/xml/schematron"
+          xmlns:cal="java:net.sf.opendf.xslt.cal.CalmlEvaluator"
+          id="priorityChecks.priorityQID.timingDependent"
+          kind="Report"
+          severity="Warning"
+          subject="higher-QID 'read_signed' [in priority relationship [at Actor-scope in 'Clip']], lower-QID 'limit' [in priority relationship [at Actor-scope in 'Clip']]">
+        <Note kind="report-location" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line=""/>Priority relationship may introduce timing-dependent behavior because an action reads input port(s) not read by all lower priority action(s).</Note>
+    <Port id="0$id$w25402ab3" kind="Input" name="I">
+        <Type id="0$id$w25402ab3a" name="int" text-begin-col="32" text-begin-line="45"
+              text-end-col="44"
+              text-end-line="45">
+            <Entry id="0$id$w25402ab3aa" kind="Expr" name="size">
+                <Expr id="0$id$w25402ab3aaa" kind="Var" name="isz" text-begin-col="41"
+                      text-begin-line="45"
+                      text-end-col="41"
+                      text-end-line="45">
+                    <Note assignable="no" decl-id="0$id$w25402ab1" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w25402a">
+                        <Type id="0$id$w25402ab1a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="isz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w25402ab4" kind="Input" name="SIGNED">
+        <Type id="0$id$w25402ab4a" name="bool"/>
+    </Port>
+    <Port id="0$id$w25402ab5" kind="Output" name="O">
+        <Type id="0$id$w25402ab5a" name="int" text-begin-col="65" text-begin-line="45"
+              text-end-col="77"
+              text-end-line="45">
+            <Entry id="0$id$w25402ab5aa" kind="Expr" name="size">
+                <Expr id="0$id$w25402ab5aaa" kind="Var" name="osz" text-begin-col="74"
+                      text-begin-line="45"
+                      text-end-col="74"
+                      text-end-line="45">
+                    <Note assignable="no" decl-id="0$id$w25402ab2" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w25402a">
+                        <Type id="0$id$w25402ab2a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="osz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Action id="0$id$w25402ab8" text-begin-col="16" text-begin-line="50" text-end-col="3"
+            text-end-line="55">
+        <Input id="0$id$w25402ab8b1" kind="Elements" port="SIGNED" text-begin-col="30"
+               text-begin-line="50"
+               text-end-col="32"
+               text-end-line="50">
+            <Decl id="0$id$w25402ab8b1a" kind="Input" name="s"/>
+        </Input>
+        <QID id="0$id$w25402ab8a" name="read_signed">
+            <ID id="0$id$w25402ab8aa" name="read_signed"/>
+        </QID>
+        <Guards id="0$id$w25402ab8b2">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$lt" old="no">
+                    <Note kind="freeVar" name="$lt"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ab8b2aa" kind="Var" name="count" text-begin-col="9"
+                          text-begin-line="51"
+                          text-end-col="9"
+                          text-end-line="51">
+                        <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                                  text-end-col="13"
+                                  text-end-line="47">
+                                <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                                          text-begin-col="12"
+                                          text-begin-line="47"
+                                          text-end-col="12"
+                                          text-end-line="47"
+                                          value="7"/>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="count"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ab8b2ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="17"
+                          text-begin-line="51"
+                          text-end-col="17"
+                          text-end-line="51"
+                          value="0"/>
+                </Args>
+                <Note kind="freeVar" name="$lt"/>
+                <Note kind="freeVar" name="count"/>
+            </Expr>
+        </Guards>
+        <Stmt id="0$id$w25402ab8b3" kind="Assign" name="sflag" text-begin-col="5"
+              text-begin-line="53"
+              text-end-col="15"
+              text-end-line="53">
+            <Expr id="0$id$w25402ab8b3a" kind="Var" name="s" text-begin-col="14"
+                  text-begin-line="53"
+                  text-end-col="14"
+                  text-end-line="53">
+                <Note assignable="no" decl-id="0$id$w25402ab8b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w25402ab8">
+                    <Type id="0$id$w25402ab4a" name="bool"/>
+                </Note>
+                <Note kind="freeVar" name="s"/>
+            </Expr>
+            <Note assignable="yes" decl-id="0$id$w25402ab7" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab7a" name="bool"/>
+            </Note>
+            <Note kind="freeVar" name="s"/>
+        </Stmt>
+        <Stmt id="0$id$w25402ab8b4" kind="Assign" name="count" text-begin-col="5"
+              text-begin-line="54"
+              text-end-col="16"
+              text-end-line="54">
+            <Expr id="0$id$w25402ab8b4a" kind="Literal" literal-kind="Integer"
+                  text-begin-col="14"
+                  text-begin-line="54"
+                  text-end-col="14"
+                  text-end-line="54"
+                  value="63"/>
+            <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                      text-end-col="13"
+                      text-end-line="47">
+                    <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                        <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                              text-begin-col="12"
+                              text-begin-line="47"
+                              text-end-col="12"
+                              text-end-line="47"
+                              value="7"/>
+                    </Entry>
+                </Type>
+            </Note>
+        </Stmt>
+        <Note kind="freeVar" name="$lt"/>
+        <Note kind="freeVar" name="count"/>
+    </Action>
+    <Action id="0$id$w25402ab9" text-begin-col="14" text-begin-line="67" text-end-col="3"
+            text-end-line="72">
+        <Input id="0$id$w25402ab9b1" kind="Elements" port="I" text-begin-col="23"
+               text-begin-line="67"
+               text-end-col="25"
+               text-end-line="67">
+            <Decl id="0$id$w25402ab9b1a" kind="Input" name="i"/>
+        </Input>
+        <QID id="0$id$w25402ab9a" name="limit.min">
+            <ID id="0$id$w25402ab9aa" name="limit"/>
+            <ID id="0$id$w25402ab9ab1" name="min"/>
+        </QID>
+        <Guards id="0$id$w25402ab9b3">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$lt" old="no">
+                    <Note kind="freeVar" name="$lt"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ab9b3aa" kind="Var" name="i" text-begin-col="5"
+                          text-begin-line="69"
+                          text-end-col="5"
+                          text-end-line="69">
+                        <Note assignable="no" decl-id="0$id$w25402ab9b1a" free="no" kind="varRef"
+                              mutable="no"
+                              scope-id="0$id$w25402ab9">
+                            <Type id="0$id$w25402ab3a" name="int" text-begin-col="32" text-begin-line="45"
+                                  text-end-col="44"
+                                  text-end-line="45">
+                                <Entry id="0$id$w25402ab3aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab3aaa" kind="Var" name="isz" text-begin-col="41"
+                                          text-begin-line="45"
+                                          text-end-col="41"
+                                          text-end-line="45">
+                                        <Note kind="freeVar" name="isz"/>
+                                    </Expr>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="i"/>
+                        <Note kind="freeVar" name="isz"/>
+                    </Expr>
+                    <Expr kind="Application">
+                        <Expr kind="Var" name="$negate" old="no">
+                            <Note kind="freeVar" name="$negate"/>
+                        </Expr>
+                        <Args>
+                            <Expr id="0$id$w25402ab9b3ab2b1" kind="Literal" literal-kind="Integer"
+                                  text-begin-col="10"
+                                  text-begin-line="69"
+                                  text-end-col="10"
+                                  text-end-line="69"
+                                  value="255"/>
+                        </Args>
+                        <Note kind="freeVar" name="$negate"/>
+                    </Expr>
+                </Args>
+                <Note kind="freeVar" name="$lt"/>
+                <Note kind="freeVar" name="i"/>
+                <Note kind="freeVar" name="isz"/>
+                <Note kind="freeVar" name="$negate"/>
+            </Expr>
+        </Guards>
+        <Stmt id="0$id$w25402ab9b4" kind="Assign" name="count" text-begin-col="5"
+              text-begin-line="71"
+              text-end-col="23"
+              text-end-line="71">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$sub" old="no">
+                    <Note kind="freeVar" name="$sub"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ab9b4aa" kind="Var" name="count" text-begin-col="14"
+                          text-begin-line="71"
+                          text-end-col="14"
+                          text-end-line="71">
+                        <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                                  text-end-col="13"
+                                  text-end-line="47">
+                                <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                                          text-begin-col="12"
+                                          text-begin-line="47"
+                                          text-end-col="12"
+                                          text-end-line="47"
+                                          value="7"/>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="count"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ab9b4ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="22"
+                          text-begin-line="71"
+                          text-end-col="22"
+                          text-end-line="71"
+                          value="1"/>
+                </Args>
+                <Note kind="freeVar" name="$sub"/>
+                <Note kind="freeVar" name="count"/>
+            </Expr>
+            <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                      text-end-col="13"
+                      text-end-line="47">
+                    <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                        <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                              text-begin-col="12"
+                              text-begin-line="47"
+                              text-end-col="12"
+                              text-end-line="47"
+                              value="7"/>
+                    </Entry>
+                </Type>
+            </Note>
+            <Note kind="freeVar" name="$sub"/>
+            <Note kind="freeVar" name="count"/>
+        </Stmt>
+        <Note kind="freeVar" name="$negate"/>
+        <Note kind="freeVar" name="$lt"/>
+        <Note kind="freeVar" name="isz"/>
+        <Note kind="freeVar" name="$sub"/>
+        <Note kind="freeVar" name="count"/>
+        <Output id="0$id$w25402ab9b2" port="O" text-begin-col="33" text-begin-line="67"
+                text-end-col="40"
+                text-end-line="67">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$negate" old="no">
+                    <Note kind="freeVar" name="$negate"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ab9b2ab1" kind="Literal" literal-kind="Integer"
+                          text-begin-col="36"
+                          text-begin-line="67"
+                          text-end-col="36"
+                          text-end-line="67"
+                          value="255"/>
+                </Args>
+                <Note kind="freeVar" name="$negate"/>
+            </Expr>
+        </Output>
+    </Action>
+    <Action id="0$id$w25402ac10" text-begin-col="14" text-begin-line="73" text-end-col="3"
+            text-end-line="78">
+        <Input id="0$id$w25402ac10b1" kind="Elements" port="I" text-begin-col="23"
+               text-begin-line="73"
+               text-end-col="25"
+               text-end-line="73">
+            <Decl id="0$id$w25402ac10b1a" kind="Input" name="i"/>
+        </Input>
+        <QID id="0$id$w25402ac10a" name="limit.max">
+            <ID id="0$id$w25402ac10aa" name="limit"/>
+            <ID id="0$id$w25402ac10ab1" name="max"/>
+        </QID>
+        <Guards id="0$id$w25402ac10b3">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$gt" old="no">
+                    <Note kind="freeVar" name="$gt"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac10b3aa" kind="Var" name="i" text-begin-col="5"
+                          text-begin-line="75"
+                          text-end-col="5"
+                          text-end-line="75">
+                        <Note assignable="no" decl-id="0$id$w25402ac10b1a" free="no" kind="varRef"
+                              mutable="no"
+                              scope-id="0$id$w25402ac10">
+                            <Type id="0$id$w25402ab3a" name="int" text-begin-col="32" text-begin-line="45"
+                                  text-end-col="44"
+                                  text-end-line="45">
+                                <Entry id="0$id$w25402ab3aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab3aaa" kind="Var" name="isz" text-begin-col="41"
+                                          text-begin-line="45"
+                                          text-end-col="41"
+                                          text-end-line="45">
+                                        <Note kind="freeVar" name="isz"/>
+                                    </Expr>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="i"/>
+                        <Note kind="freeVar" name="isz"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ac10b3ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="9"
+                          text-begin-line="75"
+                          text-end-col="9"
+                          text-end-line="75"
+                          value="255"/>
+                </Args>
+                <Note kind="freeVar" name="$gt"/>
+                <Note kind="freeVar" name="i"/>
+                <Note kind="freeVar" name="isz"/>
+            </Expr>
+        </Guards>
+        <Stmt id="0$id$w25402ac10b4" kind="Assign" name="count" text-begin-col="5"
+              text-begin-line="77"
+              text-end-col="23"
+              text-end-line="77">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$sub" old="no">
+                    <Note kind="freeVar" name="$sub"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac10b4aa" kind="Var" name="count" text-begin-col="14"
+                          text-begin-line="77"
+                          text-end-col="14"
+                          text-end-line="77">
+                        <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                                  text-end-col="13"
+                                  text-end-line="47">
+                                <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                                          text-begin-col="12"
+                                          text-begin-line="47"
+                                          text-end-col="12"
+                                          text-end-line="47"
+                                          value="7"/>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="count"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ac10b4ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="22"
+                          text-begin-line="77"
+                          text-end-col="22"
+                          text-end-line="77"
+                          value="1"/>
+                </Args>
+                <Note kind="freeVar" name="$sub"/>
+                <Note kind="freeVar" name="count"/>
+            </Expr>
+            <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                      text-end-col="13"
+                      text-end-line="47">
+                    <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                        <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                              text-begin-col="12"
+                              text-begin-line="47"
+                              text-end-col="12"
+                              text-end-line="47"
+                              value="7"/>
+                    </Entry>
+                </Type>
+            </Note>
+            <Note kind="freeVar" name="$sub"/>
+            <Note kind="freeVar" name="count"/>
+        </Stmt>
+        <Note kind="freeVar" name="$gt"/>
+        <Note kind="freeVar" name="isz"/>
+        <Note kind="freeVar" name="$sub"/>
+        <Note kind="freeVar" name="count"/>
+        <Output id="0$id$w25402ac10b2" port="O" text-begin-col="33" text-begin-line="73"
+                text-end-col="39"
+                text-end-line="73">
+            <Expr id="0$id$w25402ac10b2a" kind="Literal" literal-kind="Integer"
+                  text-begin-col="35"
+                  text-begin-line="73"
+                  text-end-col="35"
+                  text-end-line="73"
+                  value="255"/>
+        </Output>
+    </Action>
+    <Action id="0$id$w25402ac11" text-begin-col="15" text-begin-line="80" text-end-col="3"
+            text-end-line="86">
+        <Input id="0$id$w25402ac11b1" kind="Elements" port="I" text-begin-col="24"
+               text-begin-line="80"
+               text-end-col="26"
+               text-end-line="80">
+            <Decl id="0$id$w25402ac11b1a" kind="Input" name="i"/>
+        </Input>
+        <QID id="0$id$w25402ac11a" name="limit.zero">
+            <ID id="0$id$w25402ac11aa" name="limit"/>
+            <ID id="0$id$w25402ac11ab1" name="zero"/>
+        </QID>
+        <Guards id="0$id$w25402ac11b3">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$not" old="no">
+                    <Note kind="freeVar" name="$not"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac11b3ab1" kind="Var" name="sflag" text-begin-col="9"
+                          text-begin-line="82"
+                          text-end-col="9"
+                          text-end-line="82">
+                        <Note assignable="yes" decl-id="0$id$w25402ab7" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab7a" name="bool"/>
+                        </Note>
+                        <Note kind="freeVar" name="sflag"/>
+                    </Expr>
+                </Args>
+                <Note kind="freeVar" name="$not"/>
+                <Note kind="freeVar" name="sflag"/>
+            </Expr>
+            <Expr kind="Application">
+                <Expr kind="Var" name="$lt" old="no">
+                    <Note kind="freeVar" name="$lt"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac11b3b1a" kind="Var" name="i" text-begin-col="5"
+                          text-begin-line="83"
+                          text-end-col="5"
+                          text-end-line="83">
+                        <Note assignable="no" decl-id="0$id$w25402ac11b1a" free="no" kind="varRef"
+                              mutable="no"
+                              scope-id="0$id$w25402ac11">
+                            <Type id="0$id$w25402ab3a" name="int" text-begin-col="32" text-begin-line="45"
+                                  text-end-col="44"
+                                  text-end-line="45">
+                                <Entry id="0$id$w25402ab3aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab3aaa" kind="Var" name="isz" text-begin-col="41"
+                                          text-begin-line="45"
+                                          text-end-col="41"
+                                          text-end-line="45">
+                                        <Note kind="freeVar" name="isz"/>
+                                    </Expr>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="i"/>
+                        <Note kind="freeVar" name="isz"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ac11b3b1b2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="9"
+                          text-begin-line="83"
+                          text-end-col="9"
+                          text-end-line="83"
+                          value="0"/>
+                </Args>
+                <Note kind="freeVar" name="$lt"/>
+                <Note kind="freeVar" name="i"/>
+                <Note kind="freeVar" name="isz"/>
+            </Expr>
+        </Guards>
+        <Stmt id="0$id$w25402ac11b4" kind="Assign" name="count" text-begin-col="5"
+              text-begin-line="85"
+              text-end-col="23"
+              text-end-line="85">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$sub" old="no">
+                    <Note kind="freeVar" name="$sub"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac11b4aa" kind="Var" name="count" text-begin-col="14"
+                          text-begin-line="85"
+                          text-end-col="14"
+                          text-end-line="85">
+                        <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                                  text-end-col="13"
+                                  text-end-line="47">
+                                <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                                          text-begin-col="12"
+                                          text-begin-line="47"
+                                          text-end-col="12"
+                                          text-end-line="47"
+                                          value="7"/>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="count"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ac11b4ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="22"
+                          text-begin-line="85"
+                          text-end-col="22"
+                          text-end-line="85"
+                          value="1"/>
+                </Args>
+                <Note kind="freeVar" name="$sub"/>
+                <Note kind="freeVar" name="count"/>
+            </Expr>
+            <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                      text-end-col="13"
+                      text-end-line="47">
+                    <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                        <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                              text-begin-col="12"
+                              text-begin-line="47"
+                              text-end-col="12"
+                              text-end-line="47"
+                              value="7"/>
+                    </Entry>
+                </Type>
+            </Note>
+            <Note kind="freeVar" name="$sub"/>
+            <Note kind="freeVar" name="count"/>
+        </Stmt>
+        <Note kind="freeVar" name="$not"/>
+        <Note kind="freeVar" name="sflag"/>
+        <Note kind="freeVar" name="$lt"/>
+        <Note kind="freeVar" name="isz"/>
+        <Note kind="freeVar" name="$sub"/>
+        <Note kind="freeVar" name="count"/>
+        <Output id="0$id$w25402ac11b2" port="O" text-begin-col="34" text-begin-line="80"
+                text-end-col="38"
+                text-end-line="80">
+            <Expr id="0$id$w25402ac11b2a" kind="Literal" literal-kind="Integer"
+                  text-begin-col="36"
+                  text-begin-line="80"
+                  text-end-col="36"
+                  text-end-line="80"
+                  value="0"/>
+        </Output>
+    </Action>
+    <Action id="0$id$w25402ac12" text-begin-col="15" text-begin-line="88" text-end-col="3"
+            text-end-line="91">
+        <Input id="0$id$w25402ac12b1" kind="Elements" port="I" text-begin-col="24"
+               text-begin-line="88"
+               text-end-col="26"
+               text-end-line="88">
+            <Decl id="0$id$w25402ac12b1a" kind="Input" name="i"/>
+        </Input>
+        <QID id="0$id$w25402ac12a" name="limit.none">
+            <ID id="0$id$w25402ac12aa" name="limit"/>
+            <ID id="0$id$w25402ac12ab1" name="none"/>
+        </QID>
+        <Stmt id="0$id$w25402ac12b3" kind="Assign" name="count" text-begin-col="5"
+              text-begin-line="90"
+              text-end-col="23"
+              text-end-line="90">
+            <Expr kind="Application">
+                <Expr kind="Var" name="$sub" old="no">
+                    <Note kind="freeVar" name="$sub"/>
+                </Expr>
+                <Args>
+                    <Expr id="0$id$w25402ac12b3aa" kind="Var" name="count" text-begin-col="14"
+                          text-begin-line="90"
+                          text-end-col="14"
+                          text-end-line="90">
+                        <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varRef" mutable="no"
+                              scope-id="0$id$w25402a">
+                            <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                                  text-end-col="13"
+                                  text-end-line="47">
+                                <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                                    <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                                          text-begin-col="12"
+                                          text-begin-line="47"
+                                          text-end-col="12"
+                                          text-end-line="47"
+                                          value="7"/>
+                                </Entry>
+                            </Type>
+                        </Note>
+                        <Note kind="freeVar" name="count"/>
+                    </Expr>
+                    <Expr id="0$id$w25402ac12b3ab2" kind="Literal" literal-kind="Integer"
+                          text-begin-col="22"
+                          text-begin-line="90"
+                          text-end-col="22"
+                          text-end-line="90"
+                          value="1"/>
+                </Args>
+                <Note kind="freeVar" name="$sub"/>
+                <Note kind="freeVar" name="count"/>
+            </Expr>
+            <Note assignable="yes" decl-id="0$id$w25402ab6" free="no" kind="varMod" mutable="no"
+                  scope-id="0$id$w25402a">
+                <Type id="0$id$w25402ab6a" name="int" text-begin-col="3" text-begin-line="47"
+                      text-end-col="13"
+                      text-end-line="47">
+                    <Entry id="0$id$w25402ab6aa" kind="Expr" name="size">
+                        <Expr id="0$id$w25402ab6aaa" kind="Literal" literal-kind="Integer"
+                              text-begin-col="12"
+                              text-begin-line="47"
+                              text-end-col="12"
+                              text-end-line="47"
+                              value="7"/>
+                    </Entry>
+                </Type>
+            </Note>
+            <Note kind="freeVar" name="$sub"/>
+            <Note kind="freeVar" name="count"/>
+        </Stmt>
+        <Note kind="freeVar" name="isz"/>
+        <Note kind="freeVar" name="$sub"/>
+        <Note kind="freeVar" name="count"/>
+        <Output id="0$id$w25402ac12b2" port="O" text-begin-col="34" text-begin-line="88"
+                text-end-col="38"
+                text-end-line="88">
+            <Expr id="0$id$w25402ac12b2a" kind="Var" name="i" text-begin-col="36"
+                  text-begin-line="88"
+                  text-end-col="36"
+                  text-end-line="88">
+                <Note assignable="no" decl-id="0$id$w25402ac12b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w25402ac12">
+                    <Type id="0$id$w25402ab3a" name="int" text-begin-col="32" text-begin-line="45"
+                          text-end-col="44"
+                          text-end-line="45">
+                        <Entry id="0$id$w25402ab3aa" kind="Expr" name="size">
+                            <Expr id="0$id$w25402ab3aaa" kind="Var" name="isz" text-begin-col="41"
+                                  text-begin-line="45"
+                                  text-end-col="41"
+                                  text-end-line="45">
+                                <Note kind="freeVar" name="isz"/>
+                            </Expr>
+                        </Entry>
+                    </Type>
+                </Note>
+                <Note kind="freeVar" name="i"/>
+                <Note kind="freeVar" name="isz"/>
+            </Expr>
+        </Output>
+    </Action>
+    <Priority id="0$id$w25402ac13" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line="">
+        <QID id="0$id$w25402ac13a" name="read_signed">
+            <ID id="0$id$w25402ac13aa" name="read_signed"/>
+        </QID>
+        <QID id="0$id$w25402ac13b1" name="limit">
+            <ID id="0$id$w25402ac13b1a" name="limit"/>
+        </QID>
+    </Priority>
+    <Priority id="0$id$w25402ac14" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line="">
+        <QID id="0$id$w25402ac14a" name="limit.max">
+            <ID id="0$id$w25402ac14aa" name="limit"/>
+            <ID id="0$id$w25402ac14ab1" name="max"/>
+        </QID>
+        <QID id="0$id$w25402ac14b1" name="limit.zero">
+            <ID id="0$id$w25402ac14b1a" name="limit"/>
+            <ID id="0$id$w25402ac14b1b1" name="zero"/>
+        </QID>
+        <QID id="0$id$w25402ac14b2" name="limit.min">
+            <ID id="0$id$w25402ac14b2a" name="limit"/>
+            <ID id="0$id$w25402ac14b2b1" name="min"/>
+        </QID>
+        <QID id="0$id$w25402ac14b3" name="limit.none">
+            <ID id="0$id$w25402ac14b3a" name="limit"/>
+            <ID id="0$id$w25402ac14b3b1" name="none"/>
+        </QID>
+    </Priority>
+    <Note kind="freeVar" name="$negate"/>
+    <Note kind="freeVar" name="$lt"/>
+    <Note kind="freeVar" name="$sub"/>
+    <Note kind="freeVar" name="$gt"/>
+    <Note kind="freeVar" name="$not"/>
+</Actor>

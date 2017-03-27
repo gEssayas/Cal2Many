@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actor id="0$id$w32097a" name="Downsample">
+    <Note kind="counter" value="0"/>
+    <Port id="0$id$w32097aa" kind="Input" name="R">
+        <Type id="0$id$w32097aaa" name="bool"/>
+    </Port>
+    <Port id="0$id$w32097ab1" kind="Output" name="R2">
+        <Type id="0$id$w32097ab1a" name="bool"/>
+    </Port>
+    <Action id="0$id$w32097ab2" text-begin-col="7" text-begin-line="48" text-end-col="2"
+            text-end-line="49">
+        <Input id="0$id$w32097ab2b1" kind="Elements" port="R" text-begin-col="16"
+               text-begin-line="48"
+               text-end-col="18"
+               text-end-line="48">
+            <Decl id="0$id$w32097ab2b1a" kind="Input" name="r"/>
+        </Input>
+        <QID id="0$id$w32097ab2a" name="a0">
+            <ID id="0$id$w32097ab2aa" name="a0"/>
+        </QID>
+    </Action>
+    <Action id="0$id$w32097ab3" text-begin-col="7" text-begin-line="51" text-end-col="2"
+            text-end-line="52">
+        <Input id="0$id$w32097ab3b1" kind="Elements" port="R" text-begin-col="16"
+               text-begin-line="51"
+               text-end-col="18"
+               text-end-line="51">
+            <Decl id="0$id$w32097ab3b1a" kind="Input" name="r"/>
+        </Input>
+        <QID id="0$id$w32097ab3a" name="a1">
+            <ID id="0$id$w32097ab3aa" name="a1"/>
+        </QID>
+        <Output id="0$id$w32097ab3b2" port="R2" text-begin-col="27" text-begin-line="51"
+                text-end-col="29"
+                text-end-line="51">
+            <Expr id="0$id$w32097ab3b2a" kind="Var" name="r" text-begin-col="28"
+                  text-begin-line="51"
+                  text-end-col="28"
+                  text-end-line="51">
+                <Note assignable="no" decl-id="0$id$w32097ab3b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32097ab3">
+                    <Type id="0$id$w32097aaa" name="bool"/>
+                </Note>
+                <Note kind="freeVar" name="r"/>
+            </Expr>
+        </Output>
+    </Action>
+    <Schedule id="0$id$w32097ab4" initial-state="s0" kind="fsm" text-begin-col="3"
+              text-begin-line="54"
+              text-end-col="3"
+              text-end-line="57">
+        <Transition from="s0" id="0$id$w32097ab4a" text-begin-col="5" text-begin-line="55"
+                    text-end-col="20"
+                    text-end-line="55"
+                    to="s1">
+            <ActionTags id="0$id$w32097ab4aa" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32097ab4aaa" name="a0">
+                    <ID id="0$id$w32097ab4aaaa" name="a0"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="s1" id="0$id$w32097ab4b1" text-begin-col="5" text-begin-line="56"
+                    text-end-col="20"
+                    text-end-line="56"
+                    to="s0">
+            <ActionTags id="0$id$w32097ab4b1a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32097ab4b1aa" name="a1">
+                    <ID id="0$id$w32097ab4b1aaa" name="a1"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+    </Schedule>
+</Actor>

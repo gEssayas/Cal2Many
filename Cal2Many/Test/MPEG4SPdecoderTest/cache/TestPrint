@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actor id="0$id$w33398a" name="TestPrint">
+    <Note kind="counter" value="0"/>
+    <Port id="0$id$w33398aa" kind="Input" name="out">
+        <Type id="0$id$w33398aaa" name="int"/>
+    </Port>
+    <Action id="0$id$w33398ab1" text-begin-col="9" text-begin-line="3" text-end-col="2"
+            text-end-line="6">
+        <Input id="0$id$w33398ab1b1" kind="Elements" port="out" text-begin-col="21"
+               text-begin-line="3"
+               text-end-col="23"
+               text-end-line="3">
+            <Decl id="0$id$w33398ab1b1a" kind="Input" name="a"/>
+        </Input>
+        <QID id="0$id$w33398ab1a" name="print">
+            <ID id="0$id$w33398ab1aa" name="print"/>
+        </QID>
+        <Stmt id="0$id$w33398ab1b2" kind="Call" text-begin-col="3" text-begin-line="5"
+              text-end-col="13"
+              text-end-line="5">
+            <Expr id="0$id$w33398ab1b2a" kind="Var" name="println" text-begin-col="3"
+                  text-begin-line="5"
+                  text-end-col="3"
+                  text-end-line="5">
+                <Note assignable="no" free="yes" kind="varRef" mutable="no"/>
+                <Note kind="freeVar" name="println"/>
+            </Expr>
+            <Args id="0$id$w33398ab1b2b1">
+                <Expr id="0$id$w33398ab1b2b1a" kind="Var" name="a" text-begin-col="11"
+                      text-begin-line="5"
+                      text-end-col="11"
+                      text-end-line="5">
+                    <Note assignable="no" decl-id="0$id$w33398ab1b1a" free="no" kind="varRef"
+                          mutable="no"
+                          scope-id="0$id$w33398ab1">
+                        <Type id="0$id$w33398aaa" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="a"/>
+                </Expr>
+            </Args>
+            <Note kind="freeVar" name="println"/>
+            <Note kind="freeVar" name="a"/>
+        </Stmt>
+        <Note kind="freeVar" name="println"/>
+    </Action>
+    <Note kind="freeVar" name="println"/>
+</Actor>

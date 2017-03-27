@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actor id="0$id$w32016a" name="FairMerge">
+    <Decl id="0$id$w32016ab2" kind="Parameter" name="rsz">
+        <Type id="0$id$w32016ab2a" name="int"/>
+    </Decl>
+    <Decl id="0$id$w32016ab3" kind="Parameter" name="csz">
+        <Type id="0$id$w32016ab3a" name="int"/>
+    </Decl>
+    <Note kind="counter" value="0"/>
+    <Note xmlns:sch="http://www.ascc.net/xml/schematron"
+          xmlns:cal="java:net.sf.opendf.xslt.cal.CalmlEvaluator"
+          id="priorityChecks.priorityQID.timingDependent"
+          kind="Report"
+          severity="Warning"
+          subject="higher-QID 'col' [in priority relationship [at Actor-scope in 'FairMerge']], lower-QID 'row_low' [in priority relationship [at Actor-scope in 'FairMerge']]">
+        <Note kind="report-location" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line=""/>Priority relationship may introduce timing-dependent behavior because an action reads input port(s) not read by all lower priority action(s).</Note>
+    <Note xmlns:sch="http://www.ascc.net/xml/schematron"
+          xmlns:cal="java:net.sf.opendf.xslt.cal.CalmlEvaluator"
+          id="priorityChecks.priorityQID.timingDependent"
+          kind="Report"
+          severity="Warning"
+          subject="higher-QID 'row' [in priority relationship [at Actor-scope in 'FairMerge']], lower-QID 'col_low' [in priority relationship [at Actor-scope in 'FairMerge']]">
+        <Note kind="report-location" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line=""/>Priority relationship may introduce timing-dependent behavior because an action reads input port(s) not read by all lower priority action(s).</Note>
+    <Port id="0$id$w32016ab4" kind="Input" name="R0">
+        <Type id="0$id$w32016ab4a" name="int" text-begin-col="5" text-begin-line="49"
+              text-end-col="17"
+              text-end-line="49">
+            <Entry id="0$id$w32016ab4aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab4aaa" kind="Var" name="rsz" text-begin-col="14"
+                      text-begin-line="49"
+                      text-end-col="14"
+                      text-end-line="49">
+                    <Note assignable="no" decl-id="0$id$w32016ab2" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab2a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="rsz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ab5" kind="Input" name="R1">
+        <Type id="0$id$w32016ab5a" name="int" text-begin-col="23" text-begin-line="49"
+              text-end-col="35"
+              text-end-line="49">
+            <Entry id="0$id$w32016ab5aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab5aaa" kind="Var" name="rsz" text-begin-col="32"
+                      text-begin-line="49"
+                      text-end-col="32"
+                      text-end-line="49">
+                    <Note assignable="no" decl-id="0$id$w32016ab2" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab2a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="rsz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ab6" kind="Input" name="C0">
+        <Type id="0$id$w32016ab6a" name="int" text-begin-col="41" text-begin-line="49"
+              text-end-col="53"
+              text-end-line="49">
+            <Entry id="0$id$w32016ab6aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab6aaa" kind="Var" name="csz" text-begin-col="50"
+                      text-begin-line="49"
+                      text-end-col="50"
+                      text-end-line="49">
+                    <Note assignable="no" decl-id="0$id$w32016ab3" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab3a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="csz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ab7" kind="Input" name="C1">
+        <Type id="0$id$w32016ab7a" name="int" text-begin-col="59" text-begin-line="49"
+              text-end-col="71"
+              text-end-line="49">
+            <Entry id="0$id$w32016ab7aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab7aaa" kind="Var" name="csz" text-begin-col="68"
+                      text-begin-line="49"
+                      text-end-col="68"
+                      text-end-line="49">
+                    <Note assignable="no" decl-id="0$id$w32016ab3" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab3a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="csz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ab8" kind="Output" name="Y0">
+        <Type id="0$id$w32016ab8a" name="int" text-begin-col="5" text-begin-line="50"
+              text-end-col="17"
+              text-end-line="50">
+            <Entry id="0$id$w32016ab8aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab8aaa" kind="Var" name="csz" text-begin-col="14"
+                      text-begin-line="50"
+                      text-end-col="14"
+                      text-end-line="50">
+                    <Note assignable="no" decl-id="0$id$w32016ab3" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab3a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="csz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ab9" kind="Output" name="Y1">
+        <Type id="0$id$w32016ab9a" name="int" text-begin-col="23" text-begin-line="50"
+              text-end-col="35"
+              text-end-line="50">
+            <Entry id="0$id$w32016ab9aa" kind="Expr" name="size">
+                <Expr id="0$id$w32016ab9aaa" kind="Var" name="csz" text-begin-col="32"
+                      text-begin-line="50"
+                      text-end-col="32"
+                      text-end-line="50">
+                    <Note assignable="no" decl-id="0$id$w32016ab3" free="no" kind="varRef" mutable="no"
+                          scope-id="0$id$w32016a">
+                        <Type id="0$id$w32016ab3a" name="int"/>
+                    </Note>
+                    <Note kind="freeVar" name="csz"/>
+                </Expr>
+            </Entry>
+        </Type>
+    </Port>
+    <Port id="0$id$w32016ac10" kind="Output" name="ROWOUT">
+        <Type id="0$id$w32016ac10a" name="bool"/>
+    </Port>
+    <Action id="0$id$w32016ac11" text-begin-col="12" text-begin-line="52" text-end-col="68"
+            text-end-line="52">
+        <Input id="0$id$w32016ac11b1" kind="Elements" port="R0" text-begin-col="22"
+               text-begin-line="52"
+               text-end-col="24"
+               text-end-line="52">
+            <Decl id="0$id$w32016ac11b1a" kind="Input" name="a"/>
+        </Input>
+        <Input id="0$id$w32016ac11b2" kind="Elements" port="R1" text-begin-col="30"
+               text-begin-line="52"
+               text-end-col="32"
+               text-end-line="52">
+            <Decl id="0$id$w32016ac11b2a" kind="Input" name="b"/>
+        </Input>
+        <QID id="0$id$w32016ac11a" name="row">
+            <ID id="0$id$w32016ac11aa" name="row"/>
+        </QID>
+        <Output id="0$id$w32016ac11b3" port="Y0" text-begin-col="41" text-begin-line="52"
+                text-end-col="43"
+                text-end-line="52">
+            <Expr id="0$id$w32016ac11b3a" kind="Var" name="a" text-begin-col="42"
+                  text-begin-line="52"
+                  text-end-col="42"
+                  text-end-line="52">
+                <Note assignable="no" decl-id="0$id$w32016ac11b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac11"/>
+                <Note kind="freeVar" name="a"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac11b4" port="Y1" text-begin-col="49" text-begin-line="52"
+                text-end-col="51"
+                text-end-line="52">
+            <Expr id="0$id$w32016ac11b4a" kind="Var" name="b" text-begin-col="50"
+                  text-begin-line="52"
+                  text-end-col="50"
+                  text-end-line="52">
+                <Note assignable="no" decl-id="0$id$w32016ac11b2a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac11"/>
+                <Note kind="freeVar" name="b"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac11b5" port="ROWOUT" text-begin-col="61" text-begin-line="52"
+                text-end-col="66"
+                text-end-line="52">
+            <Expr id="0$id$w32016ac11b5a" kind="Literal" literal-kind="Boolean"
+                  text-begin-col="62"
+                  text-begin-line="52"
+                  text-end-col="62"
+                  text-end-line="52"
+                  value="1"/>
+        </Output>
+    </Action>
+    <Action id="0$id$w32016ac12" text-begin-col="12" text-begin-line="53" text-end-col="69"
+            text-end-line="53">
+        <Input id="0$id$w32016ac12b1" kind="Elements" port="C0" text-begin-col="22"
+               text-begin-line="53"
+               text-end-col="24"
+               text-end-line="53">
+            <Decl id="0$id$w32016ac12b1a" kind="Input" name="a"/>
+        </Input>
+        <Input id="0$id$w32016ac12b2" kind="Elements" port="C1" text-begin-col="30"
+               text-begin-line="53"
+               text-end-col="32"
+               text-end-line="53">
+            <Decl id="0$id$w32016ac12b2a" kind="Input" name="b"/>
+        </Input>
+        <QID id="0$id$w32016ac12a" name="col">
+            <ID id="0$id$w32016ac12aa" name="col"/>
+        </QID>
+        <Output id="0$id$w32016ac12b3" port="Y0" text-begin-col="41" text-begin-line="53"
+                text-end-col="43"
+                text-end-line="53">
+            <Expr id="0$id$w32016ac12b3a" kind="Var" name="a" text-begin-col="42"
+                  text-begin-line="53"
+                  text-end-col="42"
+                  text-end-line="53">
+                <Note assignable="no" decl-id="0$id$w32016ac12b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac12"/>
+                <Note kind="freeVar" name="a"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac12b4" port="Y1" text-begin-col="49" text-begin-line="53"
+                text-end-col="51"
+                text-end-line="53">
+            <Expr id="0$id$w32016ac12b4a" kind="Var" name="b" text-begin-col="50"
+                  text-begin-line="53"
+                  text-end-col="50"
+                  text-end-line="53">
+                <Note assignable="no" decl-id="0$id$w32016ac12b2a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac12"/>
+                <Note kind="freeVar" name="b"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac12b5" port="ROWOUT" text-begin-col="61" text-begin-line="53"
+                text-end-col="67"
+                text-end-line="53">
+            <Expr id="0$id$w32016ac12b5a" kind="Literal" literal-kind="Boolean"
+                  text-begin-col="62"
+                  text-begin-line="53"
+                  text-end-col="62"
+                  text-end-line="53"
+                  value="0"/>
+        </Output>
+    </Action>
+    <Action id="0$id$w32016ac13" text-begin-col="12" text-begin-line="54" text-end-col="68"
+            text-end-line="54">
+        <Input id="0$id$w32016ac13b1" kind="Elements" port="R0" text-begin-col="22"
+               text-begin-line="54"
+               text-end-col="24"
+               text-end-line="54">
+            <Decl id="0$id$w32016ac13b1a" kind="Input" name="a"/>
+        </Input>
+        <Input id="0$id$w32016ac13b2" kind="Elements" port="R1" text-begin-col="30"
+               text-begin-line="54"
+               text-end-col="32"
+               text-end-line="54">
+            <Decl id="0$id$w32016ac13b2a" kind="Input" name="b"/>
+        </Input>
+        <QID id="0$id$w32016ac13a" name="row_low">
+            <ID id="0$id$w32016ac13aa" name="row_low"/>
+        </QID>
+        <Output id="0$id$w32016ac13b3" port="Y0" text-begin-col="41" text-begin-line="54"
+                text-end-col="43"
+                text-end-line="54">
+            <Expr id="0$id$w32016ac13b3a" kind="Var" name="a" text-begin-col="42"
+                  text-begin-line="54"
+                  text-end-col="42"
+                  text-end-line="54">
+                <Note assignable="no" decl-id="0$id$w32016ac13b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac13"/>
+                <Note kind="freeVar" name="a"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac13b4" port="Y1" text-begin-col="49" text-begin-line="54"
+                text-end-col="51"
+                text-end-line="54">
+            <Expr id="0$id$w32016ac13b4a" kind="Var" name="b" text-begin-col="50"
+                  text-begin-line="54"
+                  text-end-col="50"
+                  text-end-line="54">
+                <Note assignable="no" decl-id="0$id$w32016ac13b2a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac13"/>
+                <Note kind="freeVar" name="b"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac13b5" port="ROWOUT" text-begin-col="61" text-begin-line="54"
+                text-end-col="66"
+                text-end-line="54">
+            <Expr id="0$id$w32016ac13b5a" kind="Literal" literal-kind="Boolean"
+                  text-begin-col="62"
+                  text-begin-line="54"
+                  text-end-col="62"
+                  text-end-line="54"
+                  value="1"/>
+        </Output>
+    </Action>
+    <Action id="0$id$w32016ac14" text-begin-col="12" text-begin-line="55" text-end-col="69"
+            text-end-line="55">
+        <Input id="0$id$w32016ac14b1" kind="Elements" port="C0" text-begin-col="22"
+               text-begin-line="55"
+               text-end-col="24"
+               text-end-line="55">
+            <Decl id="0$id$w32016ac14b1a" kind="Input" name="a"/>
+        </Input>
+        <Input id="0$id$w32016ac14b2" kind="Elements" port="C1" text-begin-col="30"
+               text-begin-line="55"
+               text-end-col="32"
+               text-end-line="55">
+            <Decl id="0$id$w32016ac14b2a" kind="Input" name="b"/>
+        </Input>
+        <QID id="0$id$w32016ac14a" name="col_low">
+            <ID id="0$id$w32016ac14aa" name="col_low"/>
+        </QID>
+        <Output id="0$id$w32016ac14b3" port="Y0" text-begin-col="41" text-begin-line="55"
+                text-end-col="43"
+                text-end-line="55">
+            <Expr id="0$id$w32016ac14b3a" kind="Var" name="a" text-begin-col="42"
+                  text-begin-line="55"
+                  text-end-col="42"
+                  text-end-line="55">
+                <Note assignable="no" decl-id="0$id$w32016ac14b1a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac14"/>
+                <Note kind="freeVar" name="a"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac14b4" port="Y1" text-begin-col="49" text-begin-line="55"
+                text-end-col="51"
+                text-end-line="55">
+            <Expr id="0$id$w32016ac14b4a" kind="Var" name="b" text-begin-col="50"
+                  text-begin-line="55"
+                  text-end-col="50"
+                  text-end-line="55">
+                <Note assignable="no" decl-id="0$id$w32016ac14b2a" free="no" kind="varRef"
+                      mutable="no"
+                      scope-id="0$id$w32016ac14"/>
+                <Note kind="freeVar" name="b"/>
+            </Expr>
+        </Output>
+        <Output id="0$id$w32016ac14b5" port="ROWOUT" text-begin-col="61" text-begin-line="55"
+                text-end-col="67"
+                text-end-line="55">
+            <Expr id="0$id$w32016ac14b5a" kind="Literal" literal-kind="Boolean"
+                  text-begin-col="62"
+                  text-begin-line="55"
+                  text-end-col="62"
+                  text-end-line="55"
+                  value="0"/>
+        </Output>
+    </Action>
+    <Priority id="0$id$w32016ac15" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line="">
+        <QID id="0$id$w32016ac15a" name="col">
+            <ID id="0$id$w32016ac15aa" name="col"/>
+        </QID>
+        <QID id="0$id$w32016ac15b1" name="row_low">
+            <ID id="0$id$w32016ac15b1a" name="row_low"/>
+        </QID>
+    </Priority>
+    <Priority id="0$id$w32016ac16" text-begin-col="" text-begin-line="" text-end-col=""
+              text-end-line="">
+        <QID id="0$id$w32016ac16a" name="row">
+            <ID id="0$id$w32016ac16aa" name="row"/>
+        </QID>
+        <QID id="0$id$w32016ac16b1" name="col_low">
+            <ID id="0$id$w32016ac16b1a" name="col_low"/>
+        </QID>
+    </Priority>
+    <Schedule id="0$id$w32016ac17" initial-state="r0" kind="fsm" text-begin-col="3"
+              text-begin-line="57"
+              text-end-col="3"
+              text-end-line="71">
+        <Transition from="r0" id="0$id$w32016ac17a" text-begin-col="5" text-begin-line="58"
+                    text-end-col="21"
+                    text-end-line="58"
+                    to="r1">
+            <ActionTags id="0$id$w32016ac17aa" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17aaa" name="row">
+                    <ID id="0$id$w32016ac17aaaa" name="row"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="r1" id="0$id$w32016ac17b1" text-begin-col="5" text-begin-line="59"
+                    text-end-col="21"
+                    text-end-line="59"
+                    to="r2">
+            <ActionTags id="0$id$w32016ac17b1a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b1aa" name="row">
+                    <ID id="0$id$w32016ac17b1aaa" name="row"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="r2" id="0$id$w32016ac17b2" text-begin-col="5" text-begin-line="60"
+                    text-end-col="21"
+                    text-end-line="60"
+                    to="r3">
+            <ActionTags id="0$id$w32016ac17b2a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b2aa" name="row">
+                    <ID id="0$id$w32016ac17b2aaa" name="row"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="r3" id="0$id$w32016ac17b3" text-begin-col="5" text-begin-line="61"
+                    text-end-col="21"
+                    text-end-line="61"
+                    to="c0">
+            <ActionTags id="0$id$w32016ac17b3a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b3aa" name="row">
+                    <ID id="0$id$w32016ac17b3aaa" name="row"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="c0" id="0$id$w32016ac17b4" text-begin-col="5" text-begin-line="63"
+                    text-end-col="21"
+                    text-end-line="63"
+                    to="c1">
+            <ActionTags id="0$id$w32016ac17b4a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b4aa" name="col">
+                    <ID id="0$id$w32016ac17b4aaa" name="col"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="c1" id="0$id$w32016ac17b5" text-begin-col="5" text-begin-line="64"
+                    text-end-col="21"
+                    text-end-line="64"
+                    to="c2">
+            <ActionTags id="0$id$w32016ac17b5a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b5aa" name="col">
+                    <ID id="0$id$w32016ac17b5aaa" name="col"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="c2" id="0$id$w32016ac17b6" text-begin-col="5" text-begin-line="65"
+                    text-end-col="21"
+                    text-end-line="65"
+                    to="c3">
+            <ActionTags id="0$id$w32016ac17b6a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b6aa" name="col">
+                    <ID id="0$id$w32016ac17b6aaa" name="col"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="c3" id="0$id$w32016ac17b7" text-begin-col="5" text-begin-line="66"
+                    text-end-col="21"
+                    text-end-line="66"
+                    to="r0">
+            <ActionTags id="0$id$w32016ac17b7a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b7aa" name="col">
+                    <ID id="0$id$w32016ac17b7aaa" name="col"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="r0" id="0$id$w32016ac17b8" text-begin-col="5" text-begin-line="69"
+                    text-end-col="25"
+                    text-end-line="69"
+                    to="c1">
+            <ActionTags id="0$id$w32016ac17b8a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b8aa" name="col_low">
+                    <ID id="0$id$w32016ac17b8aaa" name="col_low"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+        <Transition from="c0" id="0$id$w32016ac17b9" text-begin-col="5" text-begin-line="70"
+                    text-end-col="25"
+                    text-end-line="70"
+                    to="r1">
+            <ActionTags id="0$id$w32016ac17b9a" text-begin-col="" text-begin-line="" text-end-col=""
+                        text-end-line="">
+                <QID id="0$id$w32016ac17b9aa" name="row_low">
+                    <ID id="0$id$w32016ac17b9aaa" name="row_low"/>
+                </QID>
+            </ActionTags>
+        </Transition>
+    </Schedule>
+</Actor>

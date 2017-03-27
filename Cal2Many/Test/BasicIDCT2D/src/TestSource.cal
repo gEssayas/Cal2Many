@@ -1,0 +1,22 @@
+
+import java.util.Random;
+
+actor TestSource ()  ==> int V, bool Signed :
+List ( type:int(size=32), size=64) inIn := [1458,-289,-249,-149,-169,-89,-49,0,49,69,0,0,-29,-29,-49,0,89,-69,-29,-29,49,0,0,0,69,-69,0,0,0,0,0,0,69,0,0,-29,-29,0,0,0,0,0,0,-29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+int a:=-1;
+
+	A:	action ==> V:[inIn[a]] , Signed: [true] 
+	guard a<63
+	do
+//			println(a);
+	
+	a:=a+1;
+	end
+	
+
+	
+end
+
+
+
+

@@ -1,0 +1,8 @@
+actor TestPrint ()  int B ==>:
+
+	action  B:[b] ==> 
+	do
+		println(b);
+
+	end
+end
